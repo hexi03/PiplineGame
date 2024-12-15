@@ -1,0 +1,166 @@
+{
+  "mapSize": {
+    "width": 10,
+    "height": 10
+  },
+  "waves": [30, 50, 90, 110, 130],
+
+  "player": {
+    "hp": 11,
+    "funds": 1000
+  },
+  "tiles": [
+
+    { "x": -9, "y": 3, "tileType": 0 },
+    { "x": -9, "y": 2, "tileType": 0 },
+    { "x": -8, "y": 3, "tileType": 0 },
+    { "x": -8, "y": 2, "tileType": 0 },
+
+    { "x": -6, "y": 2, "tileType": 0 },
+    { "x": -6, "y": 1, "tileType": 0 },
+
+    { "x": -4, "y": 2, "tileType": 0 },
+
+    { "x": -1, "y": 2, "tileType": 0 },
+    { "x": 0, "y": 3, "tileType": 0 },
+    
+    { "x": 9, "y": 3, "tileType": 0 },
+    { "x": 9, "y": -3, "tileType": 0 },
+
+    { "x": 6, "y": 0, "tileType": 0 },
+    { "x": 7, "y": 1, "tileType": 0 },
+    { "x": 7, "y": -1, "tileType": 0 },
+    { "x": 7, "y": 2, "tileType": 0 },
+    { "x": 8, "y": 1, "tileType": 0 },
+    { "x": 7, "y": -2, "tileType": 0 },
+    { "x": 8, "y": -1, "tileType": 0 },
+    
+
+    { "x": 2, "y": 0, "tileType": 0 },
+    { "x": 3, "y": 0, "tileType": 0 },
+    { "x": 4, "y": 0, "tileType": 0 },
+    { "x": 5, "y": 0, "tileType": 0 },
+
+    { "x": 2, "y": 1, "tileType": 0 },
+    { "x": 2, "y": -1, "tileType": 0 },
+    { "x": 1, "y": 1, "tileType": 0 },
+    { "x": 2, "y": 2, "tileType": 0 },
+    { "x": 1, "y": -1, "tileType": 0 },
+    { "x": 2, "y": -2, "tileType": 0 },
+
+    { "x": -8, "y": -2, "tileType": 0 },
+    { "x": -7, "y": -3, "tileType": 0 },
+    
+    { "x": -5, "y": -2, "tileType": 0 },
+    { "x": -4, "y": -1, "tileType": 0 },
+    { "x": -2, "y": -1, "tileType": 0 },
+    { "x": 0, "y": -1, "tileType": 0 }
+    
+  ],
+  
+  "path": [
+    { "x": 300, "y": 1000 },
+    { "x": 300, "y": 700 },
+    { "x": 600, "y": 700 },
+    { "x": 600, "y": 1000 },
+    { "x": 800, "y": 1000 },
+    { "x": 800, "y": 700 },
+    { "x": 1500, "y": 700 },
+    { "x": 1500, "y": 850 },
+    { "x": 1600, "y": 850 },
+    { "x": 1600, "y": 1000 },
+    { "x": 2400, "y": 1000 },
+    { "x": 2400, "y": 800 },
+    { "x": 2500, "y": 800 },
+    { "x": 2500, "y": 400 },
+    { "x": 2400, "y": 400 },
+    { "x": 2400, "y": 300 },
+    { "x": 700, "y": 300 },
+    { "x": 700, "y": 500 },
+    { "x": 400, "y": 500 },
+    { "x": 400, "y": 300 },
+    { "x": 300, "y": 300 }
+  ],
+  "towers": [
+    {
+      "towerTypeId": 0,
+      "tileId": 0,
+      "tier": 0,
+      "cost": 0,
+      "damage": 0,
+      "range": 0,
+      "cooldown": 0,
+      "attackType": 0,
+      "grades": [1, 3, 5]
+    },
+
+    {
+      "towerTypeId": 1,
+      "tileId": 1,
+      "tier": 1,
+      "cost": 150,
+      "damage": 25,
+      "range": 450,
+      "cooldown": 1.5,
+      "attackType": 1,
+      "grades": [2]
+    },
+    {
+      "towerTypeId": 2,
+      "tileId": 2,
+      "tier": 2,
+      "cost": 150,
+      "damage": 35,
+      "range": 650,
+      "cooldown": 1.0,
+      "attackType": 1,
+      "grades": []
+    },
+
+    {
+      "towerTypeId": 3,
+      "tileId": 3,
+      "tier": 1,
+      "cost": 150,
+      "damage": 15,
+      "range": 200,
+      "cooldown": 1.5,
+      "attackType": 2,
+      "grades": [4]
+    },
+    {
+      "towerTypeId": 4,
+      "tileId": 4,
+      "tier": 2,
+      "cost": 150,
+      "damage": 20,
+      "range": 300,
+      "cooldown": 1.3,
+      "attackType": 2,
+      "grades": []
+    },
+
+    {
+      "towerTypeId": 5,
+      "tileId": 5,
+      "tier": 1,
+      "cost": 500,
+      "damage": 75,
+      "range": 1500,
+      "cooldown": 4,
+      "attackType": 1,
+      "grades": [6]
+    },
+    {
+      "towerTypeId": 6,
+      "tileId": 6,
+      "tier": 2,
+      "cost": 300,
+      "damage": 110,
+      "range": 2000,
+      "cooldown": 3,
+      "attackType": 1,
+      "grades": []
+    }
+  ]
+}

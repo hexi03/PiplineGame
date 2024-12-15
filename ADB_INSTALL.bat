@@ -1,0 +1,1 @@
+"C:\Program Files\Unity\Hub\Editor\2022.3.50f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\adb" install -r Timeline_BUILD_1.1alpha_SIGNED_PRIMARY.apk

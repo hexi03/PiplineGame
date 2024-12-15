@@ -1,0 +1,1 @@
+"C:\Program Files\Unity\Hub\Editor\2022.3.50f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\build-tools\34.0.0\apksigner" sign --ks user.keystore --out Timeline_BUILD_1.1alpha_SIGNED_PRIMARY.apk Timeline_BUILD_1.1alpha.apk

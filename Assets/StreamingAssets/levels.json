@@ -1,0 +1,22 @@
+{
+  "levels": [
+    {
+      "id": "1",
+      "name": "Level 1",
+      "difficulty": "Easy",
+      "mapPath": "level1.json"
+    },
+    {
+	  "id": "2",
+      "name": "Level 2",
+      "difficulty": "Medium",
+      "mapPath": "level2.json"
+    },
+    {
+	  "id": "3",
+      "name": "Level 3",
+      "difficulty": "Hard",
+      "mapPath": "level3.json"
+    }
+  ]
+}

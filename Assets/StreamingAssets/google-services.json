@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1025458145801",
+    "project_id": "pipeline-f34ea",
+    "storage_bucket": "pipeline-f34ea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025458145801:android:35fb7f45b9c03175c4c6d8",
+        "android_client_info": {
+          "package_name": "com.Hexi00Entertainment.Pipeline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025458145801-v2t7ua29jchfjp01lffpoe793hp8at7b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_7uOAgB2c0Jv0LtxHVQUXazRL01Azpjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025458145801-v2t7ua29jchfjp01lffpoe793hp8at7b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
