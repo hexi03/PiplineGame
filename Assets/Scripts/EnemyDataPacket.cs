@@ -27,7 +27,7 @@ public class EnemyDataPacket : MonoBehaviour
     public List<Vector3> waypoints;
     
     public bool isAlive = true;
-    
+    public float lifetime = 0.0f;
     Player player;
 
     
@@ -40,7 +40,7 @@ public class EnemyDataPacket : MonoBehaviour
 
     void Update()
     {
-        
+        lifetime += Time.deltaTime;
         //killReward = baseReward + moneyModifier * (int)Math.Pow(dificulty, 0.5);
         //speed = Math.Min(maxSpeed, baseSpeed + (float)Math.Pow(speedModifier, 1.0/dificulty));
         if (!isAlive) return;
@@ -67,8 +67,7 @@ public class EnemyDataPacket : MonoBehaviour
 
             player.hit(1);
             player.addBalance(killReward);
-            player.addScore(killReward);
-            
+
         }
     } 
 
@@ -96,7 +95,7 @@ public class EnemyDataPacket : MonoBehaviour
             isAlive = false;
             Destroy(gameObject);
             player.addBalance(killReward);
-            player.addScore(killReward);
+            player.addScore((int)(killReward * Math.Pow(1.01, lifetime)));
             
         }
     }

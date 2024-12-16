@@ -155,6 +155,7 @@ public class AttackController : MonoBehaviour
             if (distance < tower.stats.range){
                 Debug.Log("enemyDistanceOK");
                 Rocket rocket1 = Instantiate(rocket);
+                destroyQueue.Add(rocket1.gameObject);
                 rocket1.setTarget(towerPosition);
                 rocket1.transform.position = enemyPosition;
                 rocket1.baseTower = tower.tilePos;
