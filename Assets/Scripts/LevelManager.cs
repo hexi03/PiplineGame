@@ -40,21 +40,23 @@ public class LevelManager : MonoBehaviour
     {
         dbManager = FindObjectOfType<DatabaseManager>();
         DebugLogObject.log("Level loading...");
-        
-        
+
+        // Загружаем уровни при старте
+        StartCoroutine(LoadLevels(() =>
+        {
+            DebugLogObject.log("Initial level data loaded.");
+            SyncLevelStatesWithDatabase();
+        }));
     }
 
     public void Reload()
     {
-        StartCoroutine(LoadLevels(() =>
-        {
-            buttons.ForEach(o => Destroy(o));
-            DebugLogObject.log("DB level data fetching...");
-            LoadLevelStatesFromDatabase();
-            DebugLogObject.log("Creating buttons...");
-            CreateLevelButtons();
-        })); 
+        DebugLogObject.log("Reloading buttons...");
+        buttons.ForEach(o => Destroy(o));
+        DebugLogObject.log("Creating buttons...");
+        CreateLevelButtons();
     }
+
 
     IEnumerator LoadLevels(System.Action callback)
     {
@@ -82,10 +84,7 @@ public class LevelManager : MonoBehaviour
         
     }
 
-
-
-
-    void LoadLevelStatesFromDatabase()
+    void SyncLevelStatesWithDatabase()
     {
         foreach (var level in levels)
         {

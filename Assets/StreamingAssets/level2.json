@@ -146,7 +146,7 @@
       "tier": 1,
       "cost": 500,
       "damage": 75,
-      "range": 1500,
+      "range": 1000,
       "cooldown": 4,
       "attackType": 1,
       "grades": [6]
@@ -157,7 +157,7 @@
       "tier": 2,
       "cost": 300,
       "damage": 110,
-      "range": 2000,
+      "range": 1500,
       "cooldown": 3,
       "attackType": 1,
       "grades": []

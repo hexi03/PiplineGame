@@ -2,20 +2,20 @@
   "levels": [
     {
       "id": "1",
-      "name": "Level 1",
-      "difficulty": "Easy",
+      "name": "Уровень 1",
+      "difficulty": "Просто",
       "mapPath": "level1.json"
     },
     {
 	  "id": "2",
-      "name": "Level 2",
-      "difficulty": "Medium",
+      "name": "Уровень 2",
+      "difficulty": "Средне",
       "mapPath": "level2.json"
     },
     {
 	  "id": "3",
-      "name": "Level 3",
-      "difficulty": "Hard",
+      "name": "Уровень 3",
+      "difficulty": "Сложно",
       "mapPath": "level3.json"
     }
   ]

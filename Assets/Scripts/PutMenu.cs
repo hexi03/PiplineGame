@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using DefaultNamespace;
 using TMPro.Examples;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -16,11 +17,12 @@ public class PutMenu : MonoBehaviour
     
     List<TextMesh> texts = (new ArrayList()).Cast<TextMesh>().ToList();
 
+    private List<GameObject> destroyQueue = new List<GameObject>();
     public Tilemap menuTilemap;
     
     public Player player;
 
-    public  GameManager gameManager;
+    public GameManager gameManager;
     
 
     // Start is called before the first frame update
@@ -100,6 +102,7 @@ public class PutMenu : MonoBehaviour
             text.color = Color.yellow;
             text.transform.localScale = textScale;
             text.anchor = TextAnchor.MiddleCenter;
+            destroyQueue.Add(text.gameObject);
             //text.transform.SetParent(this.transform);
             text.text = gradeTd.cost.ToString();
             texts.Add(text);
@@ -155,5 +158,13 @@ public class PutMenu : MonoBehaviour
     Vector3 Scaled(Vector3 baseV, Vector3 scale)
     {
         return new Vector3(baseV.x * scale.x, baseV.y * scale.y, baseV.z * scale.z);
+    }
+    
+    public void OnDestroy()
+    {
+        for (int i = 0; i < destroyQueue.Count; i++)
+        {
+            if (!destroyQueue[i].IsDestroyed()) Destroy(destroyQueue[i]);
+        }
     }
 }

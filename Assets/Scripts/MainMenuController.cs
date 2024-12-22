@@ -7,12 +7,16 @@ public class MainMenuController : MonoBehaviour
 {
     public GameObject levelButtonContainer;
     public LevelManager levelManager;
+    
+    public GameObject statsPanel;
+    public StatisticsMenu statsMenu;
+
 
     public AuthController authController;
     public enum MenuAction
     {
         Start,
-        Acheivements,
+        Stats,
         Settings,
         Help,
         Auth,
@@ -47,6 +51,12 @@ public class MainMenuController : MonoBehaviour
         levelManager.Reload();
     }
     
+    public void ShowStats()
+    {
+        statsPanel.SetActive(true);
+        statsMenu.Reload();
+    }
+    
     public void QuitGame()
     {
         Debug.Log("Game is exiting");
@@ -67,11 +77,16 @@ public class MainMenuController : MonoBehaviour
 
     public void MenuEvent(MenuAction action)
     {
+        Debug.Log("Сработка MenuEvent");
         switch (action)
         {
             case MenuAction.Start:
                 hide();
                 StartGame();
+                break;
+            case MenuAction.Stats:
+                hide();
+                ShowStats();
                 break;
             case MenuAction.Exit:
                 QuitGame();

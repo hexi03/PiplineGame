@@ -16,7 +16,7 @@ public class ButtonContaiterGenericHandlers : MonoBehaviour
 
     public GameObject mainMenu;
 
-    public GameObject buttonContaiter;
+    public GameObject panel;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,7 @@ public class ButtonContaiterGenericHandlers : MonoBehaviour
         {
             case Actions.Return:
                 mainMenu.SetActive(true);
-                buttonContaiter.SetActive(false);
+                panel.SetActive(false);
                 break;
             default:
                 break;

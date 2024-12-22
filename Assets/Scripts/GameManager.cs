@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -50,17 +51,36 @@ public class GameManager : MonoBehaviour
         Debug.Log("Блокирование игры");
         Destroy(gameObject);
         mainMenuController.returnToMenu();
+        
     }
     
     public void win(int score)
     {
+        // Отображаем результат на оверлее
         resutlOverlay.win(score);
-        databaseManager.UpdateLevelState(level.levelId, true, score);
+    
+        // Добавляем текущий счёт как новую попытку
+        int attemptNumber = databaseManager.GetAttemptsForLevel(level.levelId).Count + 1;
+        databaseManager.AddScore(level.levelId, score, attemptNumber);
+
+        // Пересчитываем максимальный счёт на основе всех попыток
+        var scores = databaseManager.GetAttemptsForLevel(level.levelId);
+        int maxScore = scores.Count > 0 ? scores.Max(s => s.Score) : score;
+
+        // Обновляем состояние уровня с новым максимальным счётом
+        databaseManager.UpdateLevelState(level.levelId, true, maxScore);
     }
 
     public void gameOver(int score)
     {
         resutlOverlay.gameOver(score);
+        // Добавляем текущий счёт как новую попытку
+        int attemptNumber = databaseManager.GetAttemptsForLevel(level.levelId).Count + 1;
+        databaseManager.AddScore(level.levelId, score, attemptNumber);
+
+        // Пересчитываем максимальный счёт на основе всех попыток
+        var scores = databaseManager.GetAttemptsForLevel(level.levelId);
+        int maxScore = scores.Count > 0 ? scores.Max(s => s.Score) : score;
     }
     
     public void MenuEvent(TopBarAction action)

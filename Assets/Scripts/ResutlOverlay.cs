@@ -26,8 +26,8 @@ public class ResutlOverlay : MonoBehaviour
         fill.a = 0.5f;
         fill.g = 0.9f;
         GetComponent<Image>().color = fill;
-        resultLabel.text = "Data consumed successfully ^_-";
-        scoreLabel.text = "Score: " + score.ToString();
+        resultLabel.text = "Пакеты успешно утилизированы ^_-";
+        scoreLabel.text = "Счет: " + score.ToString();
     }
 
     public void gameOver(int score)
@@ -37,8 +37,8 @@ public class ResutlOverlay : MonoBehaviour
         fill.a = 0.5f;
         fill.r = 0.9f;
         GetComponent<Image>().color = fill;
-        resultLabel.text = "Deadletter channel overloaded >:/";
-        scoreLabel.text = "Score: " + score.ToString();
+        resultLabel.text = "Канал потерянных сообщений перегружен >:/";
+        scoreLabel.text = "Счет: " + score.ToString();
     }
 
     public void hide()

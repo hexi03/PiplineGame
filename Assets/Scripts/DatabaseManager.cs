@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using SQLite4Unity3d;
@@ -12,10 +13,7 @@ public class DatabaseManager : MonoBehaviour
 
     void Awake()
     {
-        // Указываем путь к базе данных внутри контейнера приложения
         dbPath = Path.Combine(Application.persistentDataPath, "GameDatabase.db");
-
-        // Инициализируем соединение и создаём таблицу, если она не существует
         connection = new SQLiteConnection(dbPath);
         CreateDatabase();
     }
@@ -25,23 +23,22 @@ public class DatabaseManager : MonoBehaviour
         connection?.Close();
     }
 
-    // Метод для создания таблицы, если она не существует
+    // Создание таблиц
     public void CreateDatabase()
     {
         try
         {
             connection.CreateTable<LevelState>();
-            Debug.Log("Table 'level_state' created or already exists.");
-            DebugLogObject.log("Table 'level_state' created or already exists.");
+            connection.CreateTable<Attempt>();
+            Debug.Log("Tables 'level_state' and 'score' created or already exist.");
         }
         catch (Exception ex)
         {
-            Debug.LogError("Failed to create or connect to database: " + ex.Message);
-            DebugLogObject.log("Failed to create or connect to database: " + ex.Message);
+            Debug.LogError("Failed to create database: " + ex.Message);
         }
     }
 
-    // Метод для получения состояния уровня
+    // Получение состояния уровня
     public LevelState GetLevelState(int levelId)
     {
         try
@@ -51,33 +48,77 @@ public class DatabaseManager : MonoBehaviour
         catch (Exception ex)
         {
             Debug.LogError("Failed to get level state: " + ex.Message);
-            DebugLogObject.log("Failed to get level state: " + ex.Message);
+            return null;
+        }
+    }
+    
+    // Получение состояния уровня
+    public List<LevelState> GetAllLevelStates()
+    {
+        try
+        {
+            return connection.Table<LevelState>().ToList();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Failed to get level states: " + ex.Message);
             return null;
         }
     }
 
-    // Метод для обновления состояния уровня
+    // Добавление нового счёта
+    public void AddScore(int levelId, int value, int attemptNumber)
+    {
+        try
+        {
+            var score = new Attempt
+            {
+                LevelId = levelId,
+                Score = value,
+                AttemptNumber = attemptNumber,
+                CreatedAt = DateTime.UtcNow
+            };
+            connection.Insert(score);
+            Debug.Log("Score added for level: " + levelId);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Failed to add score: " + ex.Message);
+        }
+    }
+
+    // Получение всех счётов для уровня
+    public List<Attempt> GetAttemptsForLevel(int levelId)
+    {
+        try
+        {
+            return connection.Table<Attempt>().Where(s => s.LevelId == levelId).ToList();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Failed to get scores: " + ex.Message);
+            return new List<Attempt>();
+        }
+    }
+
+    // Обновление состояния уровня
     public void UpdateLevelState(int levelId, bool isCompleted, int maxScore)
     {
         var levelState = GetLevelState(levelId);
 
         if (levelState == null)
         {
-            // Создаём новую запись, если её нет
             levelState = new LevelState { LevelId = levelId, IsCompleted = isCompleted ? 1 : 0, MaxScore = maxScore };
-            
-            Debug.LogError("Insert result: " + connection.Insert(levelState));
+            connection.Insert(levelState);
         }
         else
         {
-            // Обновляем существующую запись
             levelState.IsCompleted = isCompleted ? 1 : 0;
             levelState.MaxScore = maxScore;
             connection.Update(levelState);
         }
-        
+
         Debug.Log("Level state updated for level: " + levelId);
-        DebugLogObject.log("Level state updated for level: " + levelId);
     }
 }
 
@@ -101,3 +142,19 @@ public class LevelState
     public int IsCompleted { get; set; } = 0;
     public int MaxScore { get; set; } = 0;
 }
+
+[Table("score")]
+public class Attempt
+{
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
+
+    [Indexed] // Создаёт индекс для ускорения поиска
+    public int LevelId { get; set; } // Связь с LevelState
+
+    public int AttemptNumber { get; set; } // Номер попытки
+    public int Score { get; set; } // Значение счёта
+
+    public DateTime CreatedAt { get; set; } // Время записи
+}
+
